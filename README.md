@@ -23,7 +23,7 @@ Damit die App funktioniert, braucht man Folgendes:
 Vorher bitte [Voraussetzungen](#voraussetzungen) lesen. **Laden Sie das Programm bitte nur über diese Webseite herunter!** Da es Open 
 Source ist, kann jeder davon einen modifizierten Klon erstellen, der die Absicht hat, eure Anmeldedaten zu stehlen.
 
-[Download Windows Version 1.0.0](_Downloads/Setup_AutoConnectUniVPN_1.0.0.exe)
+[Download Windows Version 1.0.1](_Downloads/Setup_AutoConnectUniVPN_1.0.1.exe)
 
 
 # FAQ
