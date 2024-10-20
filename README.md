@@ -23,8 +23,8 @@ Damit die App funktioniert, braucht man Folgendes:
 Vorher bitte [Voraussetzungen](#voraussetzungen) lesen. **Laden Sie das Programm bitte nur über diese Webseite herunter!** Da es Open 
 Source ist, kann jeder davon einen modifizierten Klon erstellen, der die Absicht hat, eure Anmeldedaten zu stehlen.
 
-[Windows Setup Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-Setup.exe)
-[Linux Appimage Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-x86_64.AppImage)
+- [Windows Setup Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-Setup.exe)
+- [Linux Appimage Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-x86_64.AppImage)
 
 # FAQ
 ### Wie finde ich den Seed meines MFA Tokens?
