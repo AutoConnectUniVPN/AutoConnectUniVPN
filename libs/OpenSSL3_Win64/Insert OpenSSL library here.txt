@@ -1,0 +1,6 @@
+Insert following folders:
+bin
+html
+include
+lib
+ssl
