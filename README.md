@@ -20,8 +20,8 @@ Damit die App funktioniert, braucht man Folgendes:
  - Uni-ID und Uni-Passwort
 
 ## Downloads
-Vorher bitte [Voraussetzungen](#voraussetzungen) lesen. **Laden Sie das Programm bitte nur über diese Webseite herunter!** Da es Open 
-Source ist, kann jeder davon einen modifizierten Klon erstellen, der die Absicht hat, eure Anmeldedaten zu stehlen.
+Vorher bitte [Voraussetzungen](#voraussetzungen) lesen. **Lade das Programm bitte nur über diese Webseite herunter!** Da es Open 
+Source ist, kann jeder davon einen modifizierten Klon erstellen, mit dem Ziel, eure Anmeldedaten zu stehlen.
 
 - [Windows Setup Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-Setup.exe)
 - [Linux Appimage Version 1.0.8](https://raw.githubusercontent.com/AutoConnectUniVPN/AutoConnectUniVPN/refs/heads/main/_Downloads/Auto_Connect_Uni_VPN-1.0.8-x86_64.AppImage)
@@ -41,12 +41,11 @@ selbem Installationspfad wie die alte Installation). Dadurch wird die alte erset
 ### Wie werden meine Anmeldedaten gespeichert?
 Deine Anmeldedaten werden immer verschlüsselt abgespeichert! Wenn du nur deine Uni-ID und den Seed abspeichern lässt, 
 wird dein Uni-Passwort zum Verschlüsseln der Daten benutzt. Soll auch das Uni-Passwort gespeichert werden, wird 
-empfohlen, ein neues Password zur Verschlüsselung anzugeben, AUCH wenn es möglich ist, das Passwortfeld 
+empfohlen, ein neues Password zur Verschlüsselung anzugeben, auch wenn es möglich ist, das Passwortfeld 
 freizulassen.
 
-Wird das Passwortfeld freigelassen, wird ein Default-Passwort verwendet. Dieses ist zwar nicht dasselbe
-wie das im Source Code (keine Garantie!), trotzdem kann jeder, der Zugriff auf euren PC und genügend 
-Programmiererfahrung hat, ohne Probleme eure Anmeldedaten entschlüsseln, wenn das Default-Passwort verwendet wurde!
+Wird das Passwortfeld freigelassen, werden die Daten mit einem schwachen Default-Passwort, was ohne
+Probleme geknackt werden kann, verschlüsselt. Daher wird diese Variante nicht empfohlen.
 
 **Für Interessierte:**\
 Die Daten werden mithilfe der OpenSSL Bibliothek (dem Quasi-Standard für C++ Verschlüsselung)
@@ -69,7 +68,7 @@ Das kann helfen:
    mit Auto Connect Uni VPN entsteht
  - Evt. muss Cisco ein Update machen, dann über Cisco manuell mit der Uni-VPN verbinden und danach PC neu starten
 
-Ansonsten schreib gerne einen kurzen Bug-Report und ich werden mich hoffentlich irgendwann darum kümmern.
+Ansonsten schreib gerne einen kurzen Bug-Report und wir werden usn hoffentlich irgendwann darum kümmern.
 
 ### Warum wird bei mir hin und wieder kurz ein schwarzes Fenster angezeigt?
 Jedes Mal, wenn eine Interaktion mit dem Cisco Secure Client stattfindet, wird eine Konsole im Hintergrund
@@ -85,9 +84,12 @@ Um die verschlüsselten Anmeldedaten zu löschen, muss man jedoch vorher in der 
 
 # Auto Connect Uni VPN selbst kompilieren
 ### Windows
- 1. Installiere: QT Creator, QT 6, LLCM-MinGW 17.* 64-bit, CMake >= 3.16, Ninja (Alles im QT Online Installer auswählbar).\
+ 0. Lade den Source Code, also diese Repository herunter
+ 1. Installiere: QT Creator, QT 6, LLCM-MinGW 17.* 64-bit, CMake >= 3.16, Ninja und OpenSSL 3 (Alles im QT Online Installer auswählbar).\
     Wenn du sicher gehen willst, installierst du dir auch noch den MinGW 13.* Compiler (auch mit im QT Online Installer)
- 2. Projekt im QT Creator öffnen
+ 2. Die heruntergeladene OpenSSL Bibliothek muss in den Source Code manuell eingebunden werden. Hierfür kopiere den Inhalt deinem OpenSSL
+    Ordner in den [libs/OpenSSL3_Win64](libs/OpenSSL3_Win64) Ordner des heruntergeladenen Source Codes.\
+    Öffne jetzt den Source Code als Projekt im QT Creator
  3. In Projektkonfiguration _nur_ Desktop QT 6.* llvm-mingw 64-bit auswählen (auch bei Release hacken setzen)
  4. Ganz unten auf Projekt konfigurieren gehen
  5. Links unten (3tes icon über dem Hammer) Release auswählen
@@ -103,14 +105,18 @@ Um die verschlüsselten Anmeldedaten zu löschen, muss man jedoch vorher in der 
 13. In dem Terminal vom Compiler den Ordner mit der enthaltenen AutoConnectUniVPN.exe öffnen (Befehl: cd "Pfad\zum\Ordner", z.B. cd "C:\User\Me\Folder")
 14. 'windeployqt AutoConnectUniVPN.exe' eingeben, um QT Bibliotheken (DLLs) hinzuzufügen
 15. Jetzt sollten in dem Ordner, in dem vorher nur die AutoConnectUniVPN.exe lag, viele weitere Dateien und Ordner liegen
-16. Durch das Ausführen der AutoConnectUniVPN.exe erfährt man, dass immer noch Bibliotheken fehlen
-17. Um die restlichen DLL Dateien hinzuzufügen, müssen die .dll files aus dem [.dll](.dll) Ordner der GitHub Repository 
-    in den Ordner mit der AutoConnectUniVPN.exe reinkopiert werden. Du kannst diese DLLs auch in deinem eigenen 
-    Installationsordner der beiden Compiler finden, dann musst du aber beispielsweise die libcrypto*.dll noch umbenennen.
+16. Durch das Ausführen der AutoConnectUniVPN.exe erfährt man, dass immer noch folgende Bibliotheken fehlen:
+    - ibc++.dll
+    - libunwind.dll
+    - libcrypto-3-x64.dll
+17. Die ersten beiden DLLs findet man in dem Installationsorder der beiden Compiler. Die libcrypto-3-x64.dll ist ein
+    Teil von OpenSSL und befindet sich im [libs/OpenSSL3_Win64/bin](libs/OpenSSL3_Win64/bin) Ordner
 18. Jetzt sollte das Programm ausführbar sein. Der Ordner kann als ganzes an einen beliebigen Ort verschoben werden.
 19. Sollten immer noch Bibliotheken fehlen, könnte es sein, dass du den MinGW und nicht den LLVM-MinGW Compiler in den 
     Projekteinstellungen des QT Creators ausgewählt hast (dann am besten nochmal alles löschen und von vorne beginnen)
 
+# Kontakt
+[autoconnectunivpn@protonmail.com](mailto:autoconnectunivpn@protonmail.com)
 
 # Lizenz
 Siehe [LICENSE](LICENSE)
